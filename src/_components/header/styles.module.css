@@ -1,0 +1,9 @@
+.Title {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    align-items: center;    /* remove default margin */
+    line-height: 0.5;
+    justify-content: center;
+    justify-items: center;
+}
