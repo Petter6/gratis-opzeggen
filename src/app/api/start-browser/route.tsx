@@ -68,4 +68,4 @@ for (let i = 0; i < lotnummers.length; i++) {
   // await browser.close();
 
   return NextResponse.json({ status: 'success' });
-}
+}}
