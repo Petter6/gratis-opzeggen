@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import puppeteerCore from "puppeteer-core";
-import puppeteer from "puppeteer";
-import chromium from "@sparticuz/chromium";
+import { getBrowser } from "../../../_lib/getbrowser";
 
 // Define interface for the request data
 interface RequestData {
@@ -20,28 +18,6 @@ interface RequestData {
   email?: string;
   aanhef?: string;
   iban?: string;
-}
-
-export const dynamic = "force-dynamic";
-
-async function getBrowser() {
-  console.log("VERCEL_ENV =", process.env.VERCEL_ENV);
-  console.log("process.env.NODE_ENV = ", process.env.NODE_ENV);
-  if (process.env.VERCEL_ENV === "production") {
-    const executablePath = await chromium.executablePath();
-
-    return await puppeteerCore.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath,
-      headless: chromium.headless,
-    });
-  } else {
-    return await puppeteer.launch({
-      headless: false, // Show browser window in development
-      defaultViewport: null,
-    });
-  }
 }
 
 export async function POST(request: NextRequest) {
