@@ -26,6 +26,7 @@ export const dynamic = "force-dynamic";
 
 async function getBrowser() {
   console.log("VERCEL_ENV =", process.env.VERCEL_ENV);
+  console.log("process.env.NODE_ENV = ", process.env.NODE_ENV);
   if (process.env.VERCEL_ENV === "production") {
     const executablePath = await chromium.executablePath();
 
