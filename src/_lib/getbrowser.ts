@@ -1,14 +1,22 @@
 // src/lib/getBrowser.ts
-import puppeteer from "puppeteer-core";
+import puppeteerCore from "puppeteer-core";
+import puppeteer from "puppeteer";
 import chromium from "@sparticuz/chromium";
 
 export async function getBrowser() {
-  const executablePath = await chromium.executablePath();
+  if (process.env.VERCEL_ENV === "production") {
+    const executablePath = await chromium.executablePath();
 
-  return await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: executablePath || "",
-    headless: chromium.headless,
-  });
+    return await puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+  } else {
+    return await puppeteer.launch({
+      headless: false, // Show browser window in development
+      defaultViewport: null,
+    });
+  }
 }

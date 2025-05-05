@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
       // }
 
       // Don't keep the browser open indefinitely
-      await browser.close();
+      // await browser.close();
 
       return NextResponse.json({ success: true });
     } catch (error) {
