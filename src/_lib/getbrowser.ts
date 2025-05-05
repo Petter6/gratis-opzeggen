@@ -8,7 +8,7 @@ export async function getBrowser() {
   return await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath,
+    executablePath: executablePath || "",
     headless: chromium.headless,
   });
 }
